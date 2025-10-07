@@ -17,7 +17,7 @@ unzip hg19.zip
 ```
 Aquí hay que revisar el nombre del output, porque no me acuerdo dónde coloca el 1 y 2 en el nombre.
 ```bash
-for i in $(ls *_1.fastq.gz | sed 's/_1.fastq.gz//'); do
+for i in `ls *_1.fastq.gz | sed 's/_1.fastq.gz//'`; do
   bowtie2 -p 8 \
     -x databases/references/H.sapiens_hg19/bowtie2/hg19 \
     -1 trimmed/$i\_1.fastq.gz \
