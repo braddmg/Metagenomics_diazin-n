@@ -8,7 +8,7 @@ for i in `ls -1 *_1.fastq.gz | sed 's/_1.fastq.gz//'`; do  fastp -i $i\_1.fastq.
 ```
 New data will be saved in a new folder named trimmed.
 
-Then use bowtie2 to remove reads associated with the human genome. Please review this [link](https://benlangmead.github.io/aws-indexes/bowtie)to download the indexed human genome. 
+Then use bowtie2 to remove reads associated with the human genome. Please review this [link](https://benlangmead.github.io/aws-indexes/bowtie) to download the indexed human genome. 
 
 ```bash
 #Download hg19
