@@ -43,6 +43,7 @@ metaspades.py \
   -t 64 \
   -m 1000 \
   -o Assembly/$i/
+done
 #rename the contigs.fa
 for i in `ls -1 *_1.fastq.gz | sed 's/_1.fastq.gz//'`; do
 mv Assembly/$i/contigs.fa Assembly/$i/$i\.fasta
