@@ -32,7 +32,7 @@ Samples will be saved in a new folder named filtered.
 ## Metagenomic Assembly
 Aquí pueden intentar correr un loop,esto procesa una y luego la otra. O pueden correrlas por separado haciendo dos carpetas nada más o usando el comando base. 
 Tal vez sea mejor correrlas por separadop y enviar cada una a un nodo aparte para que terminen antes y no se corte en las 24h. 
-Si 24h no son suficientes para ensamblar pueden borrar el k-mer 127 pero habría que revisar el output para ver dónde se cortó. Sino si habría que pedir más tiempo en el cluster.
+Si 24h no son suficientes para ensamblar pueden borrar el k-mer 33 pero habría que revisar el output para ver dónde se cortó. Sino si habría que pedir más tiempo en el cluster.
 ```bash
 for i in `ls -1 *_1.fastq.gz | sed 's/_1.fastq.gz//'`; do #Aquí pueden reemplazar toda la parte del ls con sólo los nombres de las dos muestras, como son solo 2.
 metaspades.py \
