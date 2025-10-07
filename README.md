@@ -19,7 +19,7 @@ Aquí hay que revisar el nombre del output, porque no me acuerdo dónde coloca e
 ```bash
 for i in `ls *_1.fastq.gz | sed 's/_1.fastq.gz//'`; do
   bowtie2 -p 8 \
-    -x databases/references/H.sapiens_hg19/bowtie2/hg19 \
+    -x databases/references/H.sapiens_hg19/bowtie2/hg19 \ # poner el path dónde está el genoma descargado
     -1 trimmed/$i\_1.fastq.gz \
     -2 trimmed/$i_2.fastq.gz \
     --very-sensitive-local \
