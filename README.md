@@ -78,7 +78,7 @@ Esto va a generar nuevos achivos con extensión "*.fa" (para diferenciar de los 
 Utilice el módulo de metawrap para el siguiente comando. Les recomiendo tener los archivos fasta descomprimidos en una carpeta con el nombre de cada muestra a analizar. Puede correrlos individual si son pocas o en loop.
 ```bash
 gzip -d *.gz # para descomprimir, puede durar un rato. 
-metawrap binning -o sample -t 64 -a sample.fa --metabat2 --maxbin2 --concoct Raw/sample/*_1.fastq Raw/dry/*_2.fastq
+metawrap binning -o sample -t 64 -a sample.fa --metabat2 --maxbin2 --concoct Raw/sample/*_1.fastq Raw/sample/*_2.fastq
 ```
 
 ## Refinamiento
