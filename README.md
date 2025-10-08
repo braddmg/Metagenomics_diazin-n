@@ -60,3 +60,30 @@ do
 metaquast.py -L -s Assembly/$i/$i\.fasta -o QUAST/$i/ --min-contig 500 # Aquí pueden elegir si usar 500 o 1000. Yo recomiendo 1000
 done
 ```
+## Reformatear y remover contigs
+Vamos a usar Anvio para cambiar el nombre a los contigs generados para que no incluyan caracteres no convencionales y además eliminar los contigs menores a 1000bp. Coloque los archivos fasta en la misma carpeta y ejecute el siguiente comando. 
+
+```bash
+module load miniconda/anvio-8.0
+for i in `ls *fasta | awk 'BEGIN{FS=".fasta"}{print $1}'`
+do
+anvi-script-reformat-fasta $i.fasta \
+                           -o $i.fa \
+                           -l 1000 --simplify-names --prefix $i --seq-type NT
+done
+```
+Esto va a generar nuevos achivos con extensión "*.fa" (para diferenciar de los antiguos)
+
+## Binning con metawrap
+Utilice el módulo de metawrap para el siguiente comando. Les recomiendo tener los archivos fasta descomprimidos en una carpeta con el nombre de cada muestra a analizar. Puede correrlos individual si son pocas o en loop.
+```bash
+gzip -d *.gz # para descomprimir, puede durar un rato. 
+metawrap binning -o sample -t 64 -a sample.fa --metabat2 --maxbin2 --concoct Raw/sample/*_1.fastq Raw/dry/*_2.fastq
+```
+
+## Refinamiento
+Puede que este no funcione si checkm2 no se instaló bien, pero me avisan el output que genera y el error. Igual se puede procesar con checkm2 después.
+Aquí yo uso un 70% de completness y un 10% de contaminación, es decir, lo que no cumpla con eso se va. Pero esto es arbritario. Por ejemplo para un MAG de calidad "media" se sugiere un 50% de completness y 10%de contaminación, mientras que para uno de "buena o alta" calidad 90 y 5. Pueden bajarlo a 50 y 10 que luego igual lo podemos refinar más. En [este paper](https://www.nature.com/articles/nbt.3893) hay más info. 
+```bash
+metawrap bin_refinement -o SAMPLE_BIN_REFINEMENT -t 64 -A sample_bin/metabat2_bins/ -B sample_bin/maxbin2_bins -C sample_bin/concoct_bins -c 70 -x 10 -m 1000
+```
