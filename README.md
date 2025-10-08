@@ -64,7 +64,7 @@ done
 Vamos a usar Anvio para cambiar el nombre a los contigs generados para que no incluyan caracteres no convencionales y además eliminar los contigs menores a 1000bp. Coloque los archivos fasta en la misma carpeta y ejecute el siguiente comando. 
 
 ```bash
-module load miniconda/anvio-8.0
+conda activate anvio-8.0
 for i in `ls *fasta | awk 'BEGIN{FS=".fasta"}{print $1}'`
 do
 anvi-script-reformat-fasta $i.fasta \
